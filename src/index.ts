@@ -9,3 +9,12 @@ const agentSDK = new AgentSDK({
 });
 
 (global as any).agentSDK = agentSDK;
+
+agentSDK.authenticateAgentWithUsernamePassword(
+  process.env.EV_USERNAME,
+  process.env.EV_PASSWORD,
+  process.env.EV_PLATFORM_ID,
+  (...args: any[]) => {
+    console.log('authenticateAgentWithUsernamePassword:', ...args);
+  }
+);
