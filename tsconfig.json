@@ -2,6 +2,10 @@
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
     "outDir": "build",
+    "typeRoots": [
+      "src/typings",
+      "node_modules/@types"
+    ],
   },
   "include": [
     "src/**/*.ts",
