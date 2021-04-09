@@ -9,7 +9,7 @@ Rename `.env.sample` to `.env` and specify credentials.
 ## Run
 
 ```
-yarn server
+yarn serve
 ```
 
 Visit http://localhost:8080/
