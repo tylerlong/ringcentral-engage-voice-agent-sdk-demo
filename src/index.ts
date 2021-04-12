@@ -24,10 +24,10 @@ const rc = new RingCentral({
   });
 
   agentSDK.authenticateAgentWithRcAccessToken(
-    rc.token!.access_token,
+    rc.token!.access_token!,
     'Bearer',
-    (...args: any[]) => {
-      console.log(...args);
+    authenticateRequest => {
+      console.log(authenticateRequest);
     }
   );
 })();
