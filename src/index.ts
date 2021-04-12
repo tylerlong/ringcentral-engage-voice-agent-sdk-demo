@@ -3,18 +3,31 @@ import SoftphoneService from '@ringcentral/engage-voice-agent-softphone';
 
 import AgentSDK from '@ringcentral/engage-voice-agent';
 
+import RingCentral from '@rc-ex/core';
+
 const agentSDK = new AgentSDK({
   authHost: 'https://engage.ringcentral.com',
   isSecureSocket: true,
 });
 
-(global as any).agentSDK = agentSDK;
+const rc = new RingCentral({
+  clientId: process.env.RINGCENTRAL_CLIENT_ID,
+  clientSecret: process.env.RINGCENTRAL_CLIENT_SECRET,
+  server: process.env.RINGCENTRAL_SERVER_URL,
+});
 
-agentSDK.authenticateAgentWithUsernamePassword(
-  process.env.EV_USERNAME,
-  process.env.EV_PASSWORD,
-  process.env.EV_PLATFORM_ID,
-  (...args: any[]) => {
-    console.log('authenticateAgentWithUsernamePassword:', ...args);
-  }
-);
+(async () => {
+  await rc.authorize({
+    username: process.env.RINGCENTRAL_USERNAME!,
+    extension: process.env.RINGCENTRAL_EXTENSION,
+    password: process.env.RINGCENTRAL_PASSWORD!,
+  });
+
+  agentSDK.authenticateAgentWithRcAccessToken(
+    rc.token!.access_token,
+    'Bearer',
+    (...args: any[]) => {
+      console.log(...args);
+    }
+  );
+})();

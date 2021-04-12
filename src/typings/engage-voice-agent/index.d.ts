@@ -1,4 +1,17 @@
 declare module '@ringcentral/engage-voice-agent' {
-  const AgentSDK: any;
+  type AgentSDKOptions = {
+    authHost?: string;
+    isSecureSocket?: boolean;
+    allowMultiSocket?: boolean;
+    callbacks?: {[key: string]: Function};
+  };
+
+  const AgentSDK: {
+    new (options: AgentSDKOptions): typeof AgentSDK;
+    authenticateAgentWithUsernamePassword: Function;
+    authenticateAgentWithRcAccessToken: Function;
+    authenticateAgentWithEngageAccessToken: Function;
+  };
+
   export default AgentSDK;
 }

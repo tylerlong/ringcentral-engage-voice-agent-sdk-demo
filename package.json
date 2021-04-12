@@ -5,6 +5,7 @@
     "release": "webpack --progress"
   },
   "dependencies": {
+    "@rc-ex/core": "^0.7.3",
     "@ringcentral/engage-voice-agent": "^4.3.1",
     "@ringcentral/engage-voice-agent-softphone": "^4.3.1"
   },
